@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="multDivTest">
+    <test name="allMultDivTests">
+        <groups>
+            <run>
+                <include name="multDiv"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ru.training.at.hw1.TestMult"/>
+            <class name="ru.training.at.hw1.TestDiv"/>
+        </classes>
+    </test>
+</suite>

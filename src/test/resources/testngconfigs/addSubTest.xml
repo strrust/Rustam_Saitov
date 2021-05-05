@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="addSubTest">
+    <test name="allAddSubTests">
+        <groups>
+            <run>
+                <include name="addSub"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ru.training.at.hw1.TestAdd"/>
+            <class name="ru.training.at.hw1.TestSubtract"/>
+        </classes>
+    </test>
+</suite>
