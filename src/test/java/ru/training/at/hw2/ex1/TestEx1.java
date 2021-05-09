@@ -51,13 +51,17 @@ public class TestEx1 {
         softAssert.assertEquals(webDriver.findElement(By.id("user-name")).getText(), name);
 
         //5 Assert there are 4 items on the header section are displayed, they have proper texts
-        softAssert.assertEquals(webDriver.findElement(By.linkText("HOME"))
+        softAssert.assertEquals(webDriver.findElement(By
+                .xpath("//ul[@class = 'uui-navigation nav navbar-nav m-l8']/child::li[1]"))
                 .getText(), "HOME");
-        softAssert.assertEquals(webDriver.findElement(By.linkText("CONTACT FORM"))
+        softAssert.assertEquals(webDriver.findElement(By
+                .xpath("//ul[@class = 'uui-navigation nav navbar-nav m-l8']/child::li[2]"))
                 .getText(), "CONTACT FORM");
-        softAssert.assertEquals(webDriver.findElement(By.linkText("SERVICE"))
+        softAssert.assertEquals(webDriver.findElement(By
+                .xpath("//ul[@class = 'uui-navigation nav navbar-nav m-l8']/child::li[3]"))
                 .getText(), "SERVICE");
-        softAssert.assertEquals(webDriver.findElement(By.linkText("METALS & COLORS"))
+        softAssert.assertEquals(webDriver.findElement(By
+                .xpath("//ul[@class = 'uui-navigation nav navbar-nav m-l8']/child::li[4]"))
                 .getText(), "METALS & COLORS");
 
         //6 Assert there are 4 images on the Index Page and they are displayed
