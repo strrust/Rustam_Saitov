@@ -6,12 +6,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import ru.training.at.hw2.WebDriverManage;
+import ru.training.at.hw2.AbstractTest;
 
 import java.util.List;
 
 
-public class TestEx1 extends WebDriverManage {
+public class TestEx1 extends AbstractTest {
     SoftAssert softAssert;
 
     public void checkObjectExistence(String selectType, String pathToObject) {
@@ -64,7 +64,6 @@ public class TestEx1 extends WebDriverManage {
 
     @Test
     public void simpleTest() {
-        webDriverInit();
         softAssert = new SoftAssert();
 
         //1 Open test site by URL
@@ -145,6 +144,5 @@ public class TestEx1 extends WebDriverManage {
                 "Elements packs");
 
         softAssert.assertAll();
-        webDriverClose();
     }
 }

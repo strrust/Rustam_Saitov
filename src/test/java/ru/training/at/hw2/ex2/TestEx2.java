@@ -3,12 +3,12 @@ package ru.training.at.hw2.ex2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
-import ru.training.at.hw2.WebDriverManage;
+import ru.training.at.hw2.AbstractTest;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class TestEx2 extends WebDriverManage {
+public class TestEx2 extends AbstractTest {
 
     public void findObjectAndClick(String selectType, String path) {
         switch (selectType) {
@@ -50,8 +50,6 @@ public class TestEx2 extends WebDriverManage {
 
     @Test
     public void simpleTest() {
-        webDriverInit();
-
         //1 Open test site by URL
         webDriver.navigate().to(webAddr);
 
@@ -101,7 +99,5 @@ public class TestEx2 extends WebDriverManage {
         Select select = new Select(webDriver.findElement(By
                 .cssSelector("select.uui-form-element")));
         assertEquals(select.getFirstSelectedOption().getText(), "Yellow");
-
-        webDriverClose();
     }
 }
