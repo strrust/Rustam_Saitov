@@ -1,39 +1,57 @@
 package ru.training.at.hw2.ex2;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
+import ru.training.at.hw2.WebDriverManage;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class TestEx2 {
-    WebDriver webDriver;
-    private static final String name = "ROMAN IOVLEV";
-    private static final String webAddr = "https://jdi-testing.github.io/jdi-light/index.html";
-    private static final String pageName = "Home Page";
-    private static final String driverPath = "src/main/resources/chromedriver.exe";
-    private static final String loginName = "Roman";
-    private static final String loginPassword = "Jdi1234";
+public class TestEx2 extends WebDriverManage {
 
-    @BeforeMethod
-    public void before() {
-        System.setProperty("webdriver.chrome.driver", driverPath);
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts()
-                .implicitlyWait(10, TimeUnit.SECONDS);
+    public void findObjectAndClick(String selectType, String path) {
+        switch (selectType) {
+            case "ID":
+                webDriver.findElement(By.id(path)).click();
+                break;
+            case "CSS":
+                webDriver.findElement(By.cssSelector(path)).click();
+                break;
+            case "XPATH":
+                webDriver.findElement(By.xpath(path)).click();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void checkSelected(String selectType, String path) {
+        switch (selectType) {
+            case "ID":
+                assertTrue(webDriver.findElement(By
+                        .id(path))
+                        .isSelected());
+                break;
+            case "CSS":
+                assertTrue(webDriver.findElement(By
+                        .cssSelector(path))
+                        .isSelected());
+                break;
+            case "XPATH":
+                assertTrue(webDriver.findElement(By
+                        .xpath(path))
+                        .isSelected());
+                break;
+            default:
+                break;
+        }
     }
 
     @Test
     public void simpleTest() {
+        webDriverInit();
+
         //1 Open test site by URL
         webDriver.navigate().to(webAddr);
 
@@ -51,18 +69,15 @@ public class TestEx2 {
         assertEquals(webDriver.findElement(By.id("user-name")).getText(), name);
 
         //5 Open through the header menu Service -> Different Elements Page
-        webDriver.findElement(By
-                .xpath("//ul[@class = 'uui-navigation nav navbar-nav m-l8']"
-                        + "/child::li[@class = 'dropdown']"))
-                .click();
-        webDriver.findElement(By.xpath("//a[contains(text(), 'Different elements')]")).click();
+        findObjectAndClick("XPATH", "//a[contains(., 'Service')]");
+        findObjectAndClick("XPATH", "//a[contains(., 'Different elements')]");
 
         //6 Select checkboxes water, wind
-        webDriver.findElement(By.xpath("//div[@class='checkbox-row']/label[1]")).click();
-        webDriver.findElement(By.xpath("//div[@class='checkbox-row']/label[3]")).click();
+        findObjectAndClick("XPATH", "//label[@class='label-checkbox' and contains(., 'Water')]");
+        findObjectAndClick("XPATH", "//label[@class='label-checkbox' and contains(., 'Wind')]");
 
         //7 Select radio selen
-        webDriver.findElement(By.xpath("//div[@class='checkbox-row'][2]/label[4]")).click();
+        findObjectAndClick("XPATH", "//label[@class='label-radio' and contains(., 'Selen')]");
 
         //8 Select in dropdown Yellow
         Select drpColor = new Select(webDriver.findElement(By
@@ -72,24 +87,21 @@ public class TestEx2 {
         //9 Assert that
         //for each checkbox there is an individual log row and value
         //is corresponded to the status of checkbox
-        assertTrue(webDriver.findElement(By
-                .xpath("//div[@class='checkbox-row']/label[1]/input")).isSelected());
-        assertTrue(webDriver.findElement(By
-                .xpath("//div[@class='checkbox-row']/label[3]/input")).isSelected());
+        checkSelected("XPATH",
+                "//label[@class='label-checkbox' and contains(., 'Water')]/input");
+        checkSelected("XPATH",
+                "//label[@class='label-checkbox' and contains(., 'Wind')]/input");
 
         //for radio button there is a log row and value
         //is corresponded to the status of radio button
-        assertTrue(webDriver.findElement(By
-                .xpath("//div[@class='checkbox-row'][2]/label[4]/input")).isSelected());
+        checkSelected("XPATH",
+                "//label[@class='label-radio' and contains(., 'Selen')]/input");
 
         //for dropdown there is a log row and value is corresponded to the selected value.
         Select select = new Select(webDriver.findElement(By
                 .cssSelector("select.uui-form-element")));
         assertEquals(select.getFirstSelectedOption().getText(), "Yellow");
-    }
 
-    @AfterMethod
-    public void after() {
-        webDriver.close();
+        webDriverClose();
     }
 }
