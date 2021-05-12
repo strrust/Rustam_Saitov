@@ -117,10 +117,16 @@
 
     <profiles>
         <profile>
-            <id>hw2profile</id>
+            <id>hw3profile</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <testng.suite.file>${project.basedir}/src/test/resources/testngconfigs/hw3.xml</testng.suite.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw2profile</id>
             <properties>
                 <testng.suite.file>${project.basedir}/src/test/resources/testngconfigs/hw2.xml</testng.suite.file>
             </properties>
