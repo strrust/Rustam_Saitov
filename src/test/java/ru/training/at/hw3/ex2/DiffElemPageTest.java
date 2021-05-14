@@ -1,17 +1,13 @@
 package ru.training.at.hw3.ex2;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.training.at.hw3.DefaultTest;
-import ru.training.at.hw3.GetDataFromProperties;
+import ru.training.at.hw3.TestBase;
 import ru.training.at.hw3.pages.*;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import static ru.training.at.hw3.PropertiesLoader.getProperty;
 
-public class DiffElemPageTest extends DefaultTest {
+public class DiffElemPageTest extends TestBase {
     public static MainPage mainPage;
     public static LoginWindow loginWindow;
     public static ServiceDropdown serviceDropdown;
@@ -35,10 +31,10 @@ public class DiffElemPageTest extends DefaultTest {
         mainPage.checkTitle();
 
         loginWindow.openLoginWindow();
-        loginWindow.inputName(GetDataFromProperties.getProperty("loginName"));
-        loginWindow.inputPass(GetDataFromProperties.getProperty("loginPassword"));
+        loginWindow.inputName(getProperty("loginName"));
+        loginWindow.inputPass(getProperty("loginPassword"));
         loginWindow.clickLoginButton();
-        loginWindow.checkLoggedUserName(GetDataFromProperties.getProperty("name"));
+        loginWindow.checkLoggedUserName(getProperty("name"));
 
         serviceDropdown.openServiceDropdown();
         serviceDropdown.openDiffElemsPage();
@@ -48,14 +44,13 @@ public class DiffElemPageTest extends DefaultTest {
 
         diffElemsPageRadios.radioClick(diffElemsPageRadios.selenRadio);
 
-        diffElemsPageColorsDropdown.selectElementFromColors(GetDataFromProperties
-                .getProperty("colorOption"));
+        diffElemsPageColorsDropdown.selectElementFromColors(getProperty("colorOption"));
 
         diffElemsPageCheckboxes.checkboxIsSelected(diffElemsPageCheckboxes.windCheckbox);
         diffElemsPageCheckboxes.checkboxIsSelected(diffElemsPageCheckboxes.waterCheckbox);
 
         diffElemsPageRadios.radioIsSelected(diffElemsPageRadios.selenRadio);
 
-        diffElemsPageColorsDropdown.selectCheck(GetDataFromProperties.getProperty("colorOption"));
+        diffElemsPageColorsDropdown.selectCheck(getProperty("colorOption"));
     }
 }

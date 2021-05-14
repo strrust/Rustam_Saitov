@@ -2,12 +2,12 @@ package ru.training.at.hw3.ex1;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.training.at.hw3.DefaultTest;
-import ru.training.at.hw3.GetDataFromProperties;
+import ru.training.at.hw3.TestBase;
 import ru.training.at.hw3.pages.*;
 
+import static ru.training.at.hw3.PropertiesLoader.getProperty;
 
-public class HomePageTest extends DefaultTest {
+public class HomePageTest extends TestBase {
     public static MainPage mainPage;
     public static LoginWindow loginWindow;
     public static HeaderMenu headerMenu;
@@ -33,19 +33,19 @@ public class HomePageTest extends DefaultTest {
         mainPage.checkTitle();
 
         loginWindow.openLoginWindow();
-        loginWindow.inputName(GetDataFromProperties.getProperty("loginName"));
-        loginWindow.inputPass(GetDataFromProperties.getProperty("loginPassword"));
+        loginWindow.inputName(getProperty("loginName"));
+        loginWindow.inputPass(getProperty("loginPassword"));
         loginWindow.clickLoginButton();
-        loginWindow.checkLoggedUserName(GetDataFromProperties.getProperty("name"));
+        loginWindow.checkLoggedUserName(getProperty("name"));
 
         headerMenu.checkMenuItemText(headerMenu.headerMenuItems.get(0),
-                GetDataFromProperties.getProperty("headerMenuHome"));
+                getProperty("headerMenuHome"));
         headerMenu.checkMenuItemText(headerMenu.headerMenuItems.get(1),
-                GetDataFromProperties.getProperty("headerMenuContactForm"));
+                getProperty("headerMenuContactForm"));
         headerMenu.checkMenuItemText(headerMenu.headerMenuItems.get(2),
-                GetDataFromProperties.getProperty("headerMenuService"));
+                getProperty("headerMenuService"));
         headerMenu.checkMenuItemText(headerMenu.headerMenuItems.get(3),
-                GetDataFromProperties.getProperty("headerMenuMetalsColors"));
+                getProperty("headerMenuMetalsColors"));
 
         mainPageIcons.checkIconIsDisplayed(mainPageIcons.practiseIcon);
         mainPageIcons.checkIconIsDisplayed(mainPageIcons.customIcon);
@@ -54,16 +54,16 @@ public class HomePageTest extends DefaultTest {
 
         mainPageIconsText.checkIconsTextIsDisplayed(mainPageIconsText.practiseIconText);
         mainPageIconsText.checkIconsTextValues(mainPageIconsText.practiseIconText,
-                GetDataFromProperties.getProperty("iconPractiseText"));
+                getProperty("iconPractiseText"));
         mainPageIconsText.checkIconsTextIsDisplayed(mainPageIconsText.customIconText);
         mainPageIconsText.checkIconsTextValues(mainPageIconsText.customIconText,
-                GetDataFromProperties.getProperty("iconCustomText"));
+                getProperty("iconCustomText"));
         mainPageIconsText.checkIconsTextIsDisplayed(mainPageIconsText.multiIconText);
         mainPageIconsText.checkIconsTextValues(mainPageIconsText.multiIconText,
-                GetDataFromProperties.getProperty("iconMultiText"));
+                getProperty("iconMultiText"));
         mainPageIconsText.checkIconsTextIsDisplayed(mainPageIconsText.baseIconText);
         mainPageIconsText.checkIconsTextValues(mainPageIconsText.baseIconText,
-                GetDataFromProperties.getProperty("iconBaseText") + "…");
+                getProperty("iconBaseText") + "…");
 
         mainPageIframes.checkFrameExistence();
         webDriver.switchTo().frame("frame");
@@ -71,15 +71,10 @@ public class HomePageTest extends DefaultTest {
 
         webDriver.switchTo().defaultContent();
 
-        leftMenu.checkMenuItemText(leftMenu.homeMenuItem,
-                GetDataFromProperties.getProperty("leftMenuHome"));
-        leftMenu.checkMenuItemText(leftMenu.contactMenuItem,
-                GetDataFromProperties.getProperty("leftMenuContactForm"));
-        leftMenu.checkMenuItemText(leftMenu.serviceMenuItem,
-                GetDataFromProperties.getProperty("leftMenuService"));
-        leftMenu.checkMenuItemText(leftMenu.metalMenuItem,
-                GetDataFromProperties.getProperty("leftMenuMetalsColors"));
-        leftMenu.checkMenuItemText(leftMenu.elementsMenuItem,
-                GetDataFromProperties.getProperty("leftMenuElemPacks"));
+        leftMenu.checkMenuItemText(leftMenu.homeMenuItem, getProperty("leftMenuHome"));
+        leftMenu.checkMenuItemText(leftMenu.contactMenuItem, getProperty("leftMenuContactForm"));
+        leftMenu.checkMenuItemText(leftMenu.serviceMenuItem, getProperty("leftMenuService"));
+        leftMenu.checkMenuItemText(leftMenu.metalMenuItem, getProperty("leftMenuMetalsColors"));
+        leftMenu.checkMenuItemText(leftMenu.elementsMenuItem, getProperty("leftMenuElemPacks"));
     }
 }
