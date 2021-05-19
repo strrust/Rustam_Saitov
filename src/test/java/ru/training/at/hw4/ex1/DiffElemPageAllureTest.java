@@ -14,7 +14,7 @@ public class DiffElemPageAllureTest extends TestBase {
     @Story("User can log in to the site")
     @Story("User can move to Service -> Different Elements page")
     @Story("User can select items in checkboxes, radios, dropdown list")
-    public void allureTest() {
+    public void diffElemPageTest() {
         stepAct.openPage();
         stepAssert.checkTitle();
         stepAct.performLogin();
