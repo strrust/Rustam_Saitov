@@ -16,7 +16,7 @@ public class HomePageAllureTestFail extends TestBase {
     @Story("Images is displayed on Index Page and have proper texts")
     @Story("User can switch to the iframe and back")
     @Story("Left menu is displayed on site left and have proper menu items")
-    public void homePageTest() {
+    public void testAvailabilityOfHomePageObjects() {
         stepAct.openPage();
         stepAssert.checkTitle();
         stepAct.performLogin();
