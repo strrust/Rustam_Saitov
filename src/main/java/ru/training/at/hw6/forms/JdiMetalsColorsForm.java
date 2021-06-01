@@ -43,11 +43,11 @@ public class JdiMetalsColorsForm extends Form<MetalsColorsTestData> {
     @UI("#submit-button")
     public Button submitButton;
 
-    public void fillInMetalsColorsForm(MetalsColorsTestData data) {
-        int i;
+    @Override
+    public void fill(MetalsColorsTestData data) {
         oddNumbers.select(Integer.toString(data.summary[0]));
         evenNumbers.select(Integer.toString(data.summary[1]));
-        for (i = 0; i < data.elements.length; i++) {
+        for (int i = 0; i < data.elements.length; i++) {
             elementsCheckList.select(data.elements[i]);
         }
         colorsDropdown.select(data.color);
@@ -56,16 +56,16 @@ public class JdiMetalsColorsForm extends Form<MetalsColorsTestData> {
         if (vegetablesCheckList.selected().length() > 0) {
             vegetablesCheckList.select(vegetablesCheckList.selected());
         }
-        for (i = 0; i < data.vegetables.length; i++) {
+        for (int i = 0; i < data.vegetables.length; i++) {
             vegetablesCheckList.select(data.vegetables[i]);
         }
         submitButton.click();
 
-        for (i = 0; i < data.elements.length; i++) {
+        for (int i = 0; i < data.elements.length; i++) {
             elementsCheckList.select(data.elements[i]);
         }
         vegetablesDropdown.expand();
-        for (i = 0; i < data.vegetables.length; i++) {
+        for (int i = 0; i < data.vegetables.length; i++) {
             vegetablesCheckList.select(data.vegetables[i]);
         }
     }

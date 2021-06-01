@@ -33,12 +33,7 @@ public class JdiHomePage extends WebPage {
         jdiLoginForm.login(user);
     }
 
-    public void checkLoggedUserName(User user) {
-        userName.is().text(user.userName);
-    }
-
     public void openMetalsColorsPage() {
         headerMenu.select("Metals & Colors");
-        jdiMetalsColorsPage.checkOpened();
     }
 }
