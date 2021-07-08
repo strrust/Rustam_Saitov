@@ -21,4 +21,8 @@ public class JdiSite {
     public static void login(User user) {
         jdiHomePage.loginToSite(user);
     }
+
+    public static void sample() {
+
+    }
 }
